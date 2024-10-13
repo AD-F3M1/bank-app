@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&display=swap');
+body {
+    background-color: #ceeb45; /* Light grey background */
+  }
+  
+  .logo {
+    max-width: 60px; /* Adjust the size of the logo */
+  }
+  
+  h1 {
+    color: black; /* Dark color for text */
+    font-family: "Anton", sans-serif;
+    font-weight: 100;
+  }
+  
+  @media (max-width: 768px) {
+    /* For tablets and smaller devices */
+    h1 {
+      font-size: 2rem;
+      font-family: "Anton", sans-serif;
+      font-weight: 100;
+    }
+  
+    .logo {
+      max-width: 45px;
+    }
+  }
+  
