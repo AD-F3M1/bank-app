@@ -27,6 +27,10 @@ body{
 
 .bg {
     background-image: url(../images/bg.jpg);
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .secondBody {
