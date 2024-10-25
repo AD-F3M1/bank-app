@@ -1,31 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
     <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/jquery-3.7.1.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
+    <script src="https://kit.fontawesome.com/f88abb18ec.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.4.0/confetti.browser.min.js"></script>
 
     <title>Bank App</title>
-  </head>
-  <body>
-    <div class="container-fluid d-flex align-items-center justify-content-center vh-100">
-        <div class="d-flex align-items-center">
-          <img src="/images/logo.png" alt="Logo" class="img-fluid logo mb-3 animate-logo">
-          <h1 class="display-4 animate-text"></h1>
+</head>
+
+<body>
+    <div class="body" id="div1">
+        <div class="fade-box container-fluid d-flex align-items-center justify-content-center vh-100">
+            <div class="d-flex align-items-center">
+                <img src="/images/logo.png" alt="Logo" class="img-fluid logo mb-3 animate-logo">
+                <div class="display-4 animate-text subLogo"></div>
+            </div>
         </div>
     </div>
-  </body>
+
+    <div class="d-none" id="div2">
+        <div class="card p-4 shadow glass-container">
+            <div class="card-header text-center">
+                <h3>Welcome to Our <span id="bankName">Bank</span></h3>
+            </div>
+            <div class="card-body">
+                <div class="animated-bg"></div>
+                <form id="authForm">
+                    <div id="loginForm">
+                        <h5 class="title">LOGIN</h5>
+                        <div class="mb-3">
+                            <label for="username" class="form-label"></label>
+                            <input type="number" class="form-control font-weight-bold text-white" id="phone" placeholder="Enter your Mobile No."
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"></label>
+                            <input type="password" class="form-control font-weight-bold text-white" id="password" placeholder="Enter your password"
+                                required>
+                        </div>
+                        <button class="btn btn-primary w-100" id="authSubmitButton">Login</button>
+                        <p class="text-center mt-3">Don't have an account? <span class="toggle-link"
+                                id="showSignup">Sign up here</span></p>
+                    </div>
+                    <div id="signupForm" style="display: none;">
+                        <h5 class="title">SIGN UP</h5>
+                        <div class="mb-3">
+                            <label for="newPhone" class="form-label"></label>
+                            <input type="number" class="form-control font-weight-bold text-white" id="newPhone" placeholder="Enter a Mobile No."
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label"></label>
+                            <input type="password" class="form-control font-weight-bold text-white" id="newPassword" placeholder="Create a password"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label"></label>
+                            <input type="password" class="form-control font-weight-bold text-white" id="confirmPassword"
+                                placeholder="Confirm your password" required>
+                        </div>
+                        <button class="btn btn-primary w-100" id="authSubmitButton">Sign Up</button>
+                        <p class="text-center mt-3">Already have an account? <span class="toggle-link"
+                                id="showLogin">Login here</span></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="secondBody">
+        <div class="navbar">
+            <div class="inner-navbar">
+                <div class="greetings">
+                    <img src="images/account_circle_60dp_808080_FILL1_wght400_GRAD0_opsz48.png" class="profile-icon">
+                    <div id="p-name">Hello, <span id="profileName"></span>!</div>
+                </div>
+                <div class="menu-holder">
+                    <ul class="menu-p">
+                        <li id="hm"><img src="images/home_60dp_CEEB45_FILL1_wght400_GRAD0_opsz48.png"
+                                class="nav-icons">Home</li>
+                        <li id="products"><img src="images/view_cozy_60dp_808080_FILL1_wght400_GRAD0_opsz48.png" alt=""
+                                class="nav-icons">Products</li>
+                        <li id="payments"><img src="images/payments_60dp_808080_FILL1_wght400_GRAD0_opsz48.png" alt=""
+                                class="nav-icons">Payments</li>
+                        <li id="upTransfer"><img src="images/keyboard_double_arrow_right_60dp_808080_FILL1_wght400_GRAD0_opsz48.png"
+                                alt="" class="nav-icons">Transfers</li>
+                        <li id="finances"><img src="images/finance_mode_60dp_808080_FILL0_wght400_GRAD0_opsz48.png" alt=""
+                                class="nav-icons">Finances</li>
+                        <li id="logout"><img src="images/logout_60dp_808080_FILL0_wght400_GRAD0_opsz48.png" alt=""
+                                class="nav-icons">Logout</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <center>
+            <div class="useraccount-number">
+                <div class="acct-type">
+                    E-savers
+                </div>
+                <div class="acct-no">
+                    <span id="userId"></span> <img src="images/content_copy_60dp_CEEB45_FILL0_wght400_GRAD0_opsz48.png"
+                        id="copy">
+                </div>
+            </div>
+
+            <div class="balance">
+                <h1 class="money">&#x20A6<span class="balance-amount big"></span></h1>
+                <h5>Book balance &#x20A6<span class="money balance-amount"></span></h5>
+            </div>
+
+            <div class="flex-container">
+                <div id="fundAccount"><img src="images/add_circle_60dp_CEEB45_FILL0_wght400_GRAD0_opsz48.png"
+                        class="flex-icons">Fund
+                    account</div>
+                <div id="transfer"><img
+                        src="images/keyboard_double_arrow_right_60dp_CEEB45_FILL1_wght400_GRAD0_opsz48.png"
+                        class="flex-icons">Transfer
+                </div>
+                <div id="fxSales"><img src="images/autorenew_60dp_CEEB45_FILL1_wght400_GRAD0_opsz48.png"
+                        class="flex-icons">Fx Sales
+                </div>
+                <div id="accountDetails"><img src="images/menu_60dp_CEEB45_FILL1_wght400_GRAD0_opsz48.png"
+                        class="flex-icons">Account
+                    Details</div>
+            </div>
+
+            <div class="headings">
+                <h1>Shortcuts</h1>
+            </div>
+
+            <div class="circles">
+                <span class="box">
+                    <div id="location"><img src="images/distance_60dp_CEEB45_FILL1_wght400_GRAD0_opsz48.png"
+                            class="circle-icons"></div> <span class="text-below">Near me</span>
+                </span>
+                <span>
+                    <div id="airtime"><img src="images/signal_wifi_4_bar_60dp_9900CC_FILL0_wght400_GRAD0_opsz48.png"
+                            class="circle-icons"></div> <span class="text-below">Buy airtime</span>
+                </span>
+                <span>
+                    <div id="data"><img src="images/signal_cellular_alt_60dp_0000FF_FILL0_wght400_GRAD0_opsz48.png"
+                            class="circle-icons"></div> <span class="text-below"> Buy data</span>
+                </span>
+            </div>
+
+            <div class="headings">
+                <h1>Transaction history</h1>
+                <h6 id="see-more">See more</h6>
+            </div>
+
+            <div class="history-box">
+                <div id="day"><span id="transactionDate"></span></div>
+                <div id="details">
+                    <div class="main-details">
+                        <img src="images/account_balance_wallet_60dp_CEEB45_FILL1_wght700_GRAD200_opsz48.png"
+                            class="history-circle">
+                        <div id="bn">
+                            <div class="main">BALANCE TRANSFER <br> <span class="sub" id="transactionType"></span></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="main">- N <span id="transactionAmount"></span> <br> <span class="sub">from ....</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fund Account Modal -->
+            <div class="modal text-white" id="fundAccountModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content glassmorphism">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="fundAccountLabel">Fund Account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="fundAccountForm">
+                                <div class="mb-3">
+                                    <label for="fundAmount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control font-weight-bold text-white" id="fundAmount"
+                                        placeholder="Enter amount">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Fund Account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transfer Modal -->
+            <div class="modal text-white" id="transferModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content glassmorphism">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="transferLabel">Transfer Funds</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="transferForm">
+                                <div class="mb-3">
+                                    <label for="transferAmount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control font-weight-bold text-white" id="transferAmount"
+                                        placeholder="Enter amount">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="accountNumber" class="form-label">Account Number</label>
+                                    <input type="text" class="form-control font-weight-bold text-white" id="recipientId"
+                                        placeholder="Enter account number">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bankName" class="form-label">Bank Name</label>
+                                    <input type="text" class="form-control font-weight-bold text-white" id="bankName" placeholder="Enter bank name">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Transfer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airtime Modal -->
+            <div class="modal text-white" id="airtimeModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content glassmorphism">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="airtimeLabel">Buy Airtime</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="airtimeForm">
+                                <div class="mb-3">
+                                    <label for="airtimeAmount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control font-weight-bold text-white" id="airtimeAmount"
+                                        placeholder="Enter amount">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="airtimeNumber" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control font-weight-bold text-white" id="airtimeNumber"
+                                        placeholder="Enter phone number">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="networkName" class="form-label">Network Name</label>
+                                    <input type="text" class="form-control font-weight-bold text-white" id="networkName"
+                                        placeholder="Enter network name">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Buy Airtime</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Modal -->
+            <div class="modal text-white" id="dataModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content glassmorphism">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dataLabel">Buy Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="dataForm">
+                                <div class="mb-3">
+                                    <label for="dataAmount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control font-weight-bold text-white" id="dataAmount"
+                                        placeholder="Enter amount">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dataNumber" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control font-weight-bold text-white" id="dataNumber"
+                                        placeholder="Enter phone number">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dataNetwork" class="form-label">Network Name</label>
+                                    <input type="text" class="form-control font-weight-bold text-white" id="dataNetwork"
+                                        placeholder="Enter network name">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Buy Data</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal text-white" id="accountDetailsModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content glassmorphism">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="accountDetailsModal">Account Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                                <div class="mb-3">
+                                    <h3>Account Name: <span id="newProfileName"></span></h3>
+                                    <h3>Account Number: <span id="newUserId"></span></h3>
+                                    <h3>Phone Number: <span id="newestPhone"></span></h3>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal text-white" id="comingSoonModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content glassmorphism">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="comingSoonModal"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                                <div class="mb-3">
+                                    <h1>COMING SOON</h1>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <i>BANK is incesed by CBN and is licensed under the BSD license found in the FGN section 36</i>
+            </footer>
+        </center>
+    </div>
+</body>
+
 </html>
